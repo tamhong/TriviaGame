@@ -1,32 +1,43 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Totally Trivial Trivia</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Google Fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
         <!--Reset CSS-->
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <!--JQuery Link-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <!--Personal CSS-->
         <link rel="stylesheet" href="assets/css/style.css">
-        <!--Google Fonts-->
 
     </head>
     <body>
+
+        <div id="container">
+
+            <div id= "content">
         
-        <h1>Totally Trival Trivia!</h1>
+                <h1>B-A-N-A-N-A-S!</h1>
 
+                <br>
 
-        <div id ="startBtn">
-        <button id = "start">Start</button>
+                <div id ="startBtn" class = "mx-auto" style="width: 50px;">
+                    <button id = "start" class = "btn btn-warning">Start</button>
+                </div>
+
+                <div id="timer" class = "mx-auto" style="width: 250px;"></div>
+
+                <div id="change-content"></div>
+
+                <div id="results" class="mx-auto" style= "width: 115px;"></div>
+
+                <div id="submit" class = "mx-auto" style="width:50px;"></div>
+
+            </div>
+
         </div>
-
-        <div id="timer"></div>
-
-        <div id="change-content"></div>
-
-        <div id="results"></div>
 
         
         

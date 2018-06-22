@@ -1,133 +1,65 @@
+//Array of Questions
+
 var myQuestions = [
     {
-        question: "q?",
+        question: "What does the scientific name for banana, musa sapientum, mean?",
         answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer"
-        },
-        correctAnswer: "a"
-    },
-    {
-        question: "q?",
-        answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer"
-        },
-        correctAnswer: "c"
-    },
-    {
-        question: "q?",
-        answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
+            a: "Fruit of the apes",
+            b: "Fruit of the wise men",
+            c: "Fruit of the gods"
         },
         correctAnswer: "b"
     },
     {
-        question: "q?",
+        question: "Do bananas sink or float in water?",
         answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
+            a: "Sink",
+            b: "Float",
+            c: "Bananas neither sink or float"
         },
-        correctAnswer: "c"
+        correctAnswer: "b"
     },
     {
-        question: "q?",
+        question: "________ is the only place in the U.S. where bananas are grown commercially.",
         answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
+            a: "Hawaii",
+            b: "California",
+            c: "Florida",
         },
         correctAnswer: "a"
     },
     {
-        question: "q?",
+        question: "How many pounds of bananas does the average American eat annually?",
         answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
+            a: "40",
+            b: "10",
+            c: "27",
         },
         correctAnswer: "c"
     },
     {
-        question: "q?",
+        question: "A cluster of bananas is called a _______ , and a single banana is called a _______?",
         answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
+            a: "hand/finger",
+            b: "foot/toe",
+            c: "pod/seed",
         },
         correctAnswer: "a"
-    },
-    {
-        question: "q?",
-        answers: {
-            a: "answer",
-            b: "answer",
-            c: "answer",
-        },
-        correctAnswer: "c"
     }
 ];
+
+//Result variables
 
 var right = 0;
 var wrong = 0;
 var unanswered= 0;
 
+//Result function
 
-
-$("#start").click(function timedQuiz() {
-    $("#startBtn").empty();
-
-    $("#timer").text(60);
-
-    var n = 60;
-    var tm = setInterval(countDown,1000);
-
-    function countDown(){
-        n--;
-        $("#timer").text(n);
-        if(n == 0){
-            clearInterval(tm);
-        }
-        console.log(n);
-
-        $("#done").click(function stopTimer () {
-            clearInterval(tm);
-        })
-    }
-
-    var answers;
-
-    for (var i = 0; i < myQuestions.length; i++) {
-        answers = [];
-        $("#change-content").append("<br>" + myQuestions[i].question + "<br>");
-
-        for(letter in myQuestions[i].answers){
-            $("#change-content").append(
-                '<label>'
-                + '<input type="radio" class="radios"name="question'+i+'" value="'+letter+'">'
-                + letter + ': '
-                + myQuestions[i].answers[letter]
-                + '</label>'
-
-            ); 
-
-        }
-      
-    }
-
-    $("#change-content").append("<br>"+"<button id = 'done'>Submit</button")  
-
-})
-
-$(document).on("click","#done",function(){
-
-    $("#timer").empty()
-    $("#change-content").hide()
+function showResults () {
+    $("#timer").empty();
+    $("#change-content").hide();
+    $("#submit").empty();
 
         var selValue0= $('input[name=question0]:checked').val();
         if (selValue0 === myQuestions[0].correctAnswer) {
@@ -169,62 +101,76 @@ $(document).on("click","#done",function(){
         } else {
             wrong++
         }
-        var selValue5= $('input[name=question5]:checked').val();
-        if (selValue5 === myQuestions[5].correctAnswer) {
-            right++
-        } else if (selValue5 === undefined) {
-            unanswered++
-        } else {
-            wrong++
-        }
-        var selValue6= $('input[name=question6]:checked').val();
-        if (selValue6 === myQuestions[6].correctAnswer) {
-            right++
-        } else if (selValue6 === undefined) {
-            unanswered++
-        } else {
-            wrong++
-        }
-        var selValue7= $('input[name=question7]:checked').val();
-        if (selValue7 === myQuestions[7].correctAnswer) {
-            right++
-        } else if (selValue7 === undefined) {
-            unanswered++
-        } else {
-            wrong++
-        }
 
-    console.log(selValue0, selValue1, selValue2, selValue3, selValue4, selValue5, selValue6, selValue7)
+    console.log(selValue0, selValue1, selValue2, selValue3, selValue4)
     console.log(right)
     console.log(wrong)
     console.log(unanswered)
 
-    $("#results").append('Correct: ' + right)
-    $("#results").append('<br> Wrong: ' + wrong)
-    $("#results").append('<br> Unanswered: ' + unanswered)
+    //Result Display
+
+    $("#results").append('<strong>Correct:</strong> ' + right)
+    $("#results").append('<br> <strong>Wrong:</strong> ' + wrong)
+    $("#results").append('<br> <strong>Unanswered:</strong> ' + unanswered)
+};
+
+//Quiz Function
+
+$("#start").click(function timedQuiz() {
+    $("#startBtn").empty();
+
+    //Countdown
+
+    $("#timer").text("You have 60 seconds left!");
+
+    var n = 60;
+    var tm = setInterval(countDown,1000);
+
+    function countDown(){
+        n--;
+        $("#timer").text("You have " + n + " seconds left!");
+        if(n == 0){
+            clearInterval(tm);
+            showResults();
+        }
+        console.log(n);
+
+        $("#done").click(function stopTimer () {
+            clearInterval(tm);
+        })
+
+    }
+
+    //Quiz Display
+
+    var answers;
+
+    for (var i = 0; i < myQuestions.length; i++) {
+        answers = [];
+        $("#change-content").append("<br><strong>" + myQuestions[i].question + "</strong><br>");
+
+        for(letter in myQuestions[i].answers){
+            $("#change-content").append(
+                '<label>'
+                + '<input type="radio" class="radios"name="question'+i+'" value="'+letter+'">'
+                //+ letter + ': '
+                + "&nbsp; &nbsp;" +myQuestions[i].answers[letter]
+                + '</label> <br>'
+
+            ); 
+
+        }
+      
+    }
+
+    $("#submit").append("<br><button id ='done' class='btn btn-warning'>Submit</button>")  
+
+})
+
+//Submit button function
+
+$(document).on("click","#done",function(){
+
+    showResults();
 
 });
-
-
-//console.log(right)
-//console.log(wrong)
-
-
-
-
-
-//$(document).on("click",".radios", function() {
-  //  console.log(("question"+i))
-//})
-
-
-
-//function check () {
-  //  $(".userAns").push()
-        
-
-/*'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'>'
-					+ letter + ': '
-					+ myQuestions[i].answers[letter]
-				+ '</label>'*/

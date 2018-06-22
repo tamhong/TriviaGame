@@ -1,0 +1,40 @@
+#container {
+    height: 100%;
+    width:60%;
+    margin: auto;
+    background: white;
+}
+
+#content {
+    padding: 30px 30px 30px 30px;
+}
+
+body {
+    background-image: url("../images/bananas2.jpg");
+    background-repeat: repeat;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Frijole', cursive;
+    font-size: 50px;
+    color: #fec30e;
+}
+
+
+
+#startBtn {
+    width: 100%;
+}
+
+#start {
+    align-content: center;
+    margin: auto;
+}
+
+#timer {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
